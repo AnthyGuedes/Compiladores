@@ -1,16 +1,19 @@
 # Compiladores
+# 🏛️ Análise Léxica — Autômato Finito Determinístico (AFD)
 
-# Análise Léxica — Álex
-## Máquina de Estados: Autômato Finito Determinístico (AFD)
-
-### 📌 Legenda dos Estados Finais (Reconhecimento)
-* **q1**: INTEIRO
-* **q3**: FRACIONÁRIO
-* **q5**: NOMEVARIÁVEL
+Especificação e regras de transição do analisador léxico **Álex**.
 
 ---
 
-### 📄 Arquivo de Configuração (`configAfd.md`)
+## 📌 Reconhecimento dos Tokens (Estados Finais)
+
+* **`q1`**: `INTEIRO`
+* **`q3`**: `FRACIONÁRIO`
+* **`q5`**: `NOMEVARIÁVEL`
+
+---
+
+## ⚙️ Regras de Configuração do Autômato
 
 ```ini
 [ESTADOS]
@@ -25,7 +28,7 @@ q3 : FRACIONÁRIO
 q5 : NOMEVARIÁVEL
 
 [REGRAS DE TRANSIÇÃO]
-# Formato: EstadoInicial : Símbolo : EstadoFinal
+# Formato -> EstadoInicial : Símbolo : EstadoFinal
 
 # Transições a partir de q0
 q0 : 0..9 : q1
@@ -44,13 +47,18 @@ q2 : 0..9 : q3
 # Transições a partir de q3 (FRACIONÁRIO)
 q3 : 0..9 : q3
 
-# Transições a partir de q4 (Sinal +/-)
+# Transições a partir de q4 (Sinal)
 q4 : 0..9 : q1
 
 # Transições a partir de q5 (NOMEVARIÁVEL)
 q5 : a..z, A..Z, 0..9, _ : q5
+```
 
+---
 
+## 🔄 Diagrama de Estados (Renderizado via Mermaid)
+
+```mermaid
 stateDiagram-v2
     [*] --> q0
 
@@ -76,6 +84,7 @@ stateDiagram-v2
     %% Transições do Estado q5 (NOMEVARIÁVEL)
     q5 --> q5 : a..z, A..Z, 0..9, _
 
-    %% Destaque dos Estados Finais (Duplo Círculo)
+    %% Destaque dos Estados Finais
     classDef finalState fill:#e1f5fe,stroke:#0288d1,stroke-width:3px;
     class q1,q3,q5 finalState;
+```
