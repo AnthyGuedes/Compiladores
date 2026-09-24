@@ -1,0 +1,23 @@
+if(x>10){
+    y=10;
+}
+
+|ID||TK|    |TipoTK||L||C|
+|10||if|    |PR:IF||1||1|
+|12||(|     |AP||1||2|
+|13||x|     |NomeVar||1||3|
+|14||>|     |Condicao||1||4|
+|15||10|    |Int||1||5|
+|16||)|     |FP||1||6|
+|17||{|     |ACH||1||7|
+|18||y|     |NomeVar||2||5|
+|19||=|     |Atribuicao||2||7|
+|20||0|     |Int||2||4|
+|21||;|     |PV||2||5|
+|22||}|     |FCH||2||6|
+
+[SIF] -> meu analisador léxico deve reconhecer PR:IF [AP] [CONDICAO] [FP] [ACH] [BLOCO] [FCH]
+[CONDICAO] -> [COMPARACAO] [NOMEVAR] | [NOMEVAR] [COMPARACAO] [VALOR] | PR:TRUE
+[COMPARACAO] -> "==" | "<" | ">" | "<=" | ">=" | "!"
+[BLOCO] -> ... | [SIF]
+
